@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts",
-    "build": "tsc",
+    "postinstall": "tsc",
     "start": "node build/src/index.js",
     "database:createTables":"knex migrate:latest",
     "database:seeds":"knex seed:run",

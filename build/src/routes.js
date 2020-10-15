@@ -23,7 +23,7 @@ routes.delete('/user/:id', token_1.checkJwt, UserController_1.default.detele);
 // products
 routes.post('/product', token_1.checkJwt, ProductController_1.default.create);
 routes.get('/product', ProductController_1.default.read);
-routes.get('/product/:id', token_1.checkJwt, ProductController_1.default.read);
+routes.get('/product/:id', ProductController_1.default.read);
 // products ------ images
 routes.post('/image', token_1.checkJwt, upload.single('file'), ProductController_1.default.upload);
 exports.default = routes;

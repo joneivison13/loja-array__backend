@@ -114,7 +114,7 @@ export default {
       return res.status(400).json({ error: "usuário não existe" });
     }
 
-    const user = await database("user").select("*").where({user_email}).first();
+    const user = await database("user").select("*").where({user_email:user_email}).first();
 
     if (!user) {
       return res.status(404).json({ error: "Usuário inexistente." });
@@ -142,7 +142,20 @@ export default {
     }
 
     const token = jwt.sign(
-      {id:iduser},
+      {
+        user_pass: password,
+        user_name,
+        user_email: email,
+        user_whatsapp,
+        user_photo,
+        user_city,
+        user_state,
+        user_district,
+        user_postalcode,
+        user_cpf,
+        user_lastname,
+        iduser,
+      },
       config.secret,
       { expiresIn: "7d" }
     );

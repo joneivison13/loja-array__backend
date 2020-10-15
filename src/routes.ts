@@ -30,9 +30,9 @@ routes.delete('/user/:id', checkJwt, UserController.detele)
 // products
 routes.post('/product', checkJwt, ProductController.create)
 
-routes.get('/product', checkJwt, ProductController.read)
+routes.get('/product', ProductController.read)
 
-routes.get('/product/:id', checkJwt, ProductController.read)
+routes.get('/product/:id', ProductController.read)
 
 // products ------ images
   routes.post('/image', checkJwt, upload.single('file'), ProductController.upload)

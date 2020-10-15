@@ -7,7 +7,7 @@ const app = express();
 import routes from './routes'
 
 app.use(cors())
-app.use('/static', express.static('temp'));
+app.use('/temp',express.static('temp'));
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(routes)

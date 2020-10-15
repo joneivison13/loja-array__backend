@@ -5,6 +5,7 @@ exports.up = function (knex) {
     table.string('product_name').notNullable();
     table.double('product_price').notNullable()
     table.integer('product_amount',).notNullable()
+    table.string('product_about');
     table.integer('user_iduser').unsigned();
     table.foreign('user_iduser').references('user.iduser')
 

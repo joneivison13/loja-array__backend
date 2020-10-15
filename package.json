@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node build/src/index.js",
     "database:createTables":"knex migrate:latest",
-    "database:seeds":"knex seed:run"
+    "database:seeds":"knex seed:run",
+    "deploy":"git add . && git commit -m Heroku && git push"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
+const port:string|number = process.env.PORT || 3333
 
 const app = express();
 
@@ -11,6 +12,6 @@ app.use('/temp',express.static('temp'));
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(routes)
-app.listen(3333 ,() => {
+app.listen(port ,() => {
   console.log('servidor rodando')
 })

@@ -62,11 +62,11 @@ export default {
     const {id} = req.params	
 
     if(id){	
-      const product = await database('product').select('*').where({idproduct:id})	
+      const product = await database('product').select('*').where({idproduct:id}).leftJoin('products_photos', 'product.idproduct', 'products_photos.products_idproduct').first();
       return res.json({id, product:product})	
     }	
 
-    const products = await database('product').select('*')	
+    const products = await database('product').select('*').leftJoin('products_photos', 'product.idproduct', 'products_photos.products_idproduct')	
     return res.json({id, product:products})	
   },	
 

@@ -12,7 +12,6 @@ interface Iuser {
   user_name:string
   user_email:string
   user_whatsapp:string
-  user_photo:string
   user_city:string
   user_state:string
   user_district:string
@@ -31,12 +30,14 @@ export default {
       user_email,
       user_pass,
       user_whatsapp,
-      user_photo,
       user_city,
       user_state,
       user_district,
       user_postalcode,
     } = req.body;
+
+
+    console.log(req.body)
 
     if (
       !user_name ||
@@ -59,7 +60,6 @@ export default {
         user_email,
         user_pass: hash,
         user_whatsapp,
-        user_photo,
         user_city,
         user_state,
         user_district,
@@ -85,7 +85,6 @@ export default {
       user_cpf,
       user_email,
       user_whatsapp,
-      user_photo,
       user_city,
       user_state,
       user_district,
@@ -125,7 +124,6 @@ export default {
       user_name,
       user_email: email,
       user_whatsapp,
-      user_photo,
       user_city,
       user_state,
       user_district,
@@ -147,7 +145,6 @@ export default {
         user_name,
         user_email: email,
         user_whatsapp,
-        user_photo,
         user_city,
         user_state,
         user_district,
@@ -166,7 +163,6 @@ export default {
         user_name,
         email,
         user_whatsapp,
-        user_photo,
         user_city,
         user_state,
         user_district,

@@ -1,5 +1,6 @@
 import {Router} from 'express'
 import multer from 'multer'
+import CartController from './controller/CartController';
 
 import ProductController from './controller/ProductController';
 
@@ -36,5 +37,11 @@ routes.get('/product/:id', ProductController.read)
 
 // products ------ images
   routes.post('/image', checkJwt, upload.single('file'), ProductController.upload)
+
+// cart
+routes.get('/cart', checkJwt, CartController.list)
+
+routes.post('/cart', checkJwt, CartController.create)
+routes.delete('/cart',checkJwt, CartController.remove)
 
 export default routes

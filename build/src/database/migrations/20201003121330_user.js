@@ -7,7 +7,6 @@ exports.up = function (knex) {
         table.string('user_email').notNullable().unique();
         table.string('user_pass').notNullable();
         table.string('user_whatsapp').notNullable();
-        table.string('user_photo').notNullable();
         table.string('user_city').notNullable();
         table.string('user_state').notNullable();
         table.string('user_district').notNullable();

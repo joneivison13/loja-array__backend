@@ -47,11 +47,12 @@ var token_js_1 = __importDefault(require("../config/token.js"));
 exports.default = {
     create: function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, user_name, user_lastname, user_cpf, user_email, user_pass, user_whatsapp, user_photo, user_city, user_state, user_district, user_postalcode, salt, hash;
+            var _a, user_name, user_lastname, user_cpf, user_email, user_pass, user_whatsapp, user_city, user_state, user_district, user_postalcode, salt, hash;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = req.body, user_name = _a.user_name, user_lastname = _a.user_lastname, user_cpf = _a.user_cpf, user_email = _a.user_email, user_pass = _a.user_pass, user_whatsapp = _a.user_whatsapp, user_photo = _a.user_photo, user_city = _a.user_city, user_state = _a.user_state, user_district = _a.user_district, user_postalcode = _a.user_postalcode;
+                        _a = req.body, user_name = _a.user_name, user_lastname = _a.user_lastname, user_cpf = _a.user_cpf, user_email = _a.user_email, user_pass = _a.user_pass, user_whatsapp = _a.user_whatsapp, user_city = _a.user_city, user_state = _a.user_state, user_district = _a.user_district, user_postalcode = _a.user_postalcode;
+                        console.log(req.body);
                         if (!user_name ||
                             !user_lastname ||
                             !user_cpf ||
@@ -71,7 +72,6 @@ exports.default = {
                                 user_email: user_email,
                                 user_pass: hash,
                                 user_whatsapp: user_whatsapp,
-                                user_photo: user_photo,
                                 user_city: user_city,
                                 user_state: user_state,
                                 user_district: user_district,
@@ -98,7 +98,6 @@ exports.default = {
                                 user_cpf: user_cpf,
                                 user_email: user_email,
                                 user_whatsapp: user_whatsapp,
-                                user_photo: user_photo,
                                 user_city: user_city,
                                 user_state: user_state,
                                 user_district: user_district,
@@ -130,7 +129,7 @@ exports.default = {
     },
     login: function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, user_email, user_pass, user, password, user_name, email, user_whatsapp, user_photo, user_city, user_state, user_district, user_postalcode, user_cpf, user_lastname, iduser, matchPass, token;
+            var _a, user_email, user_pass, user, password, user_name, email, user_whatsapp, user_city, user_state, user_district, user_postalcode, user_cpf, user_lastname, iduser, matchPass, token;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -144,7 +143,7 @@ exports.default = {
                         if (!user) {
                             return [2 /*return*/, res.status(404).json({ error: "Usuário inexistente." })];
                         }
-                        password = user.user_pass, user_name = user.user_name, email = user.user_email, user_whatsapp = user.user_whatsapp, user_photo = user.user_photo, user_city = user.user_city, user_state = user.user_state, user_district = user.user_district, user_postalcode = user.user_postalcode, user_cpf = user.user_cpf, user_lastname = user.user_lastname, iduser = user.iduser;
+                        password = user.user_pass, user_name = user.user_name, email = user.user_email, user_whatsapp = user.user_whatsapp, user_city = user.user_city, user_state = user.user_state, user_district = user.user_district, user_postalcode = user.user_postalcode, user_cpf = user.user_cpf, user_lastname = user.user_lastname, iduser = user.iduser;
                         return [4 /*yield*/, bcryptjs_1.default.compareSync(user_pass, password)];
                     case 2:
                         matchPass = _b.sent();
@@ -156,7 +155,6 @@ exports.default = {
                             user_name: user_name,
                             user_email: email,
                             user_whatsapp: user_whatsapp,
-                            user_photo: user_photo,
                             user_city: user_city,
                             user_state: user_state,
                             user_district: user_district,
@@ -171,7 +169,6 @@ exports.default = {
                                     user_name: user_name,
                                     email: email,
                                     user_whatsapp: user_whatsapp,
-                                    user_photo: user_photo,
                                     user_city: user_city,
                                     user_state: user_state,
                                     user_district: user_district,

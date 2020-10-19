@@ -29,12 +29,17 @@ exports.checkJwt = function (req, res, next) {
     var token = req.headers["auth"];
     var jwtPayload;
     try {
-        jwtPayload = jwt.verify(token, token_1.default.secret);
-        res.locals.jwtPayload = jwtPayload;
+        jwtPayload = jwt.verify(token, token_1.default.secret, function (err, decoded) {
+            if (err)
+                return res.status(401).json({ error: true, message: 'Erro na autenticação' });
+            var _a = decoded, user_email = _a.user_email, iduser = _a.iduser;
+            req.user_email = user_email;
+            req.iduser = iduser;
+            next();
+        });
     }
     catch (error) {
         res.status(401).json({ error: "Falha na autenticação" });
         return;
     }
-    next();
 };

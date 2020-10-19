@@ -103,7 +103,7 @@ export default {
     if (!productQtd.length) {
       return res.status(404).json({ message: "Produto Inexistente" });
     }
-    if (Number(qtd) > Number(productQtd[0].products_has_user_qtd)) {
+    if (Number(qtd) > Number(productQtd[0].products_has_user_qtd) - 1) {
       await database("products_has_user")
         .delete("*")
         .where({ user_iduser: req.iduser, products_idproducts });

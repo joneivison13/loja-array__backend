@@ -112,11 +112,11 @@ exports.default = {
                     case 0:
                         id = req.params.id;
                         if (!id) return [3 /*break*/, 2];
-                        return [4 /*yield*/, database_1.default('product').select('*').where({ idproduct: id })];
+                        return [4 /*yield*/, database_1.default('product').select('*').where({ idproduct: id }).leftJoin('products_photos', 'product.idproduct', 'products_photos.products_idproduct').first()];
                     case 1:
                         product = _a.sent();
                         return [2 /*return*/, res.json({ id: id, product: product })];
-                    case 2: return [4 /*yield*/, database_1.default('product').select('*')];
+                    case 2: return [4 /*yield*/, database_1.default('product').select('*').leftJoin('products_photos', 'product.idproduct', 'products_photos.products_idproduct')];
                     case 3:
                         products = _a.sent();
                         return [2 /*return*/, res.json({ id: id, product: products })];

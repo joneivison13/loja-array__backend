@@ -7,6 +7,8 @@ export default {
       .select("product.*")
       .select("products_photos.products_photos_dir")
       .select("products_has_user.*")
+      .select("user.user_name")
+      .select("user.user_lastname")
       .where("products_has_user.user_iduser", req.iduser)
       .innerJoin(
         "product",
@@ -17,7 +19,8 @@ export default {
         "products_photos",
         "products_has_user.products_idproducts",
         "products_photos.products_idproduct"
-      );
+      )
+      .innerJoin("user", "product.user_iduser", "user.iduser");
 
     return res.json({ message: productInCart });
   },
@@ -51,13 +54,11 @@ export default {
               .json({ error: true, message: "Produto inexistente" });
           }
           console.log(err);
-          res
-            .status(500)
-            .json({
-              error: true,
-              message:
-                "Aconteceu um erro fatal com o servidor, por favor, tesnte mais tarde.",
-            });
+          res.status(500).json({
+            error: true,
+            message:
+              "Aconteceu um erro fatal com o servidor, por favor, tesnte mais tarde.",
+          });
         });
 
       return res.json({
@@ -79,13 +80,11 @@ export default {
             .json({ error: true, message: "Produto inexistente" });
         }
         console.log(err);
-        res
-          .status(500)
-          .json({
-            error: true,
-            message:
-              "Aconteceu um erro fatal com o servidor, por favor, tesnte mais tarde.",
-          });
+        res.status(500).json({
+          error: true,
+          message:
+            "Aconteceu um erro fatal com o servidor, por favor, tesnte mais tarde.",
+        });
       });
 
     return res.json({ message: "Produto adicionado ao carrinho com sucesso!" });

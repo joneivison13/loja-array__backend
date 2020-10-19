@@ -3,7 +3,7 @@ import database from "../database";
 
 export default {
     async list(req:Request, res:Response){
-        const productInCart = await database('products_has_user').select('*').where('products_has_user.user_iduser',req.iduser).innerJoin('product', 'products_has_user.products_has_user_id', 'product.idproduct');
+        const productInCart = await database('products_has_user').select('*').where('products_has_user.user_iduser',req.iduser).innerJoin('product', 'products_has_user.products_idproducts', 'product.idproduct');
         
         return res.json({message:productInCart})
     },
@@ -15,19 +15,20 @@ export default {
             return res.json({error:true, message:'Falta selecionar o produto.'})
         }
 
-        const products_has_user_qtd:number = product_qtd >= 1 ? product_qtd : 1
+        const products_has_user_qtd:number = !!product_qtd ? product_qtd : 1
         const productUser = await database('products_has_user').select('*').where({user_iduser:req.iduser, products_idproducts})
-        if(productUser.length){
+        console.log(productUser)
+        if(productUser.length >= 1){
             const {products_has_user_qtd:Qtd, products_idproducts:productId} = productUser[0]
             await database('products_has_user').update({products_has_user_qtd:Number(Qtd) + Number(products_has_user_qtd)}).where({products_idproducts:productId}).catch(err => {
                 if(err.code ==='ER_NO_REFERENCED_ROW_2'){
                     return res.status(401).json({error:true, message:'Produto inexistente'})
                 }
                 console.log(err)
-                res.status(401).json({error:true, message:'Aconteceu um erro fatal com o servidor, por favor, tesnte mais tarde.'})
+                res.status(500).json({error:true, message:'Aconteceu um erro fatal com o servidor, por favor, tesnte mais tarde.'})
             })
 
-            return res.json({message:'Produto adicionado ao carrinho com sucesso!'})
+            return res.json({message:'Produto adicionado ao carrinho com sucesso.'})
             
         }
 
@@ -42,7 +43,7 @@ export default {
                 return res.status(401).json({error:true, message:'Produto inexistente'})
             }
             console.log(err)
-            res.status(401).json({error:true, message:'Aconteceu um erro fatal com o servidor, por favor, tesnte mais tarde.'})
+            res.status(500).json({error:true, message:'Aconteceu um erro fatal com o servidor, por favor, tesnte mais tarde.'})
         })
 
         return res.json({message:'Produto adicionado ao carrinho com sucesso!'})
